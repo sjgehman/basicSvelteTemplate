@@ -1,6 +1,7 @@
 <script lang="ts">
     import Sun from "lucide-svelte/icons/sun";
     import Moon from "lucide-svelte/icons/moon";
+    import Github from "lucide-svelte/icons/github";
 
     import { resetMode, setMode } from "mode-watcher";
     import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
@@ -58,17 +59,19 @@
             </svg>
         </button>
 
-        <!-- Right Icon -->
-        <div class="relative">
+        <!-- Right Icons -->
+        <div class="relative flex items-center space-x-4">
+            <a href="https://github.com/sjgehman" target="_blank" rel="noopener noreferrer">
+                <Github class="h-[1.2rem] w-[1.2rem] text-header-foreground" />
+                <span class="sr-only">GitHub</span>
+            </a>
             <DropdownMenu.Root>
-                <DropdownMenu.Trigger
-                    class={buttonVariants({ variant: "outline", size: "icon" })}
-                >
+                <DropdownMenu.Trigger class="relative flex items-center justify-center h-[1.2rem] w-[1.2rem]">
                     <Sun
-                        class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0 text-header-foreground"
+                        class="absolute h-full w-full transition-transform transform rotate-0 scale-100 dark:-rotate-90 dark:scale-0 text-header-foreground"
                     />
                     <Moon
-                        class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100 text-header-foreground"
+                        class="absolute h-full w-full transition-transform transform rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-header-foreground"
                     />
                     <span class="sr-only">Toggle theme</span>
                 </DropdownMenu.Trigger>
