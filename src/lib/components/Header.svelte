@@ -26,15 +26,15 @@
 </script>
 
 <header
-    class="text-header-foreground border-b border-gray-400 dark:border-gray-700"
+    class="text-header-foreground border-b border-gray-300 dark:border-gray-700"
     style="background-color: hsl(var(--header-background));"
 >
-    <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
         <!-- Desktop Menu -->
         <ul class="hidden md:flex space-x-6">
-            <li><a href="/" class="hover:text-gray-300">Home</a></li>
-            <li><a href="#" class="hover:text-gray-300">About</a></li>
-            <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+            <li><a href="/" class="hover:text-gray-300 font-bold">Home</a></li>
+            <li><a href="#" class="hover:text-gray-300 font-bold">About</a></li>
+            <li><a href="#" class="hover:text-gray-300 font-bold">Contact</a></li>
         </ul>
 
         <!-- Mobile Hamburger Menu -->
@@ -67,12 +67,14 @@
             </a>
             <DropdownMenu.Root>
                 <DropdownMenu.Trigger class="relative flex items-center justify-center h-[1.2rem] w-[1.2rem]">
-                    <Sun
-                        class="absolute h-full w-full transition-transform transform rotate-0 scale-100 dark:-rotate-90 dark:scale-0 text-header-foreground"
-                    />
-                    <Moon
-                        class="absolute h-full w-full transition-transform transform rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-header-foreground"
-                    />
+                    <div class="relative h-[1.2rem] w-[1.2rem]">
+                        <Sun
+                            class="absolute h-full w-full transition-transform transform rotate-0 scale-100 dark:-rotate-90 dark:scale-0 text-header-foreground"
+                        />
+                        <Moon
+                            class="absolute h-full w-full transition-transform transform rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-header-foreground"
+                        />
+                    </div>
                     <span class="sr-only">Toggle theme</span>
                 </DropdownMenu.Trigger>
                 <DropdownMenu.Content align="end">
@@ -97,17 +99,17 @@
             style="background-color: hsl(var(--header-background));"
         >
             <li>
-                <a href="/" class="block px-4 py-2 hover:bg-muted hover:text-muted-foreground" on:click={closeMenu}
+                <a href="/" class="block px-4 py-2 hover:bg-muted hover:text-muted-foreground font-bold" on:click={closeMenu}
                     >Home</a
                 >
             </li>
             <li>
-                <a href="#" class="block px-4 py-2 hover:bg-muted hover:text-muted-foreground" on:click={closeMenu}
+                <a href="#" class="block px-4 py-2 hover:bg-muted hover:text-muted-foreground font-bold" on:click={closeMenu}
                     >About</a
                 >
             </li>
             <li>
-                <a href="#" class="block px-4 py-2 hover:bg-muted hover:text-muted-foreground" on:click={closeMenu}
+                <a href="#" class="block px-4 py-2 hover:bg-muted hover:text-muted-foreground font-bold" on:click={closeMenu}
                     >Contact</a
                 >
             </li>
