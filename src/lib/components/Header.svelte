@@ -4,16 +4,15 @@
     import Github from "lucide-svelte/icons/github";
 
     import { resetMode, setMode } from "mode-watcher";
-    import * as DropdownMenu from "$lib/components/ui/dropdown-menu/index.js";
-    import { buttonVariants } from "$lib/components/ui/button/index.js";
-
-    let isMenuOpen = false;
     import { onMount } from "svelte";
 
-    let bodyBackgroundColor = "";
+    let isMenuOpen = false;
+    let isDarkMode = false;
 
     onMount(() => {
-        bodyBackgroundColor = getComputedStyle(document.body).backgroundColor;
+        const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        isDarkMode = prefersDarkScheme;
+        setMode(prefersDarkScheme ? "dark" : "light");
     });
 
     function toggleMenu() {
@@ -22,6 +21,11 @@
 
     function closeMenu() {
         isMenuOpen = false;
+    }
+
+    function toggleTheme() {
+        isDarkMode = !isDarkMode;
+        setMode(isDarkMode ? "dark" : "light");
     }
 </script>
 
@@ -65,30 +69,16 @@
                 <Github class="h-[1.2rem] w-[1.2rem] text-header-foreground" />
                 <span class="sr-only">GitHub</span>
             </a>
-            <DropdownMenu.Root>
-                <DropdownMenu.Trigger class="relative flex items-center justify-center h-[1.2rem] w-[1.2rem]">
-                    <div class="relative h-[1.2rem] w-[1.2rem]">
-                        <Sun
-                            class="absolute h-full w-full transition-transform transform rotate-0 scale-100 dark:-rotate-90 dark:scale-0 text-header-foreground"
-                        />
-                        <Moon
-                            class="absolute h-full w-full transition-transform transform rotate-90 scale-0 dark:rotate-0 dark:scale-100 text-header-foreground"
-                        />
-                    </div>
-                    <span class="sr-only">Toggle theme</span>
-                </DropdownMenu.Trigger>
-                <DropdownMenu.Content align="end">
-                    <DropdownMenu.Item onclick={() => setMode("light")}>
-                        Light
-                    </DropdownMenu.Item>
-                    <DropdownMenu.Item onclick={() => setMode("dark")}>
-                        Dark
-                    </DropdownMenu.Item>
-                    <DropdownMenu.Item onclick={() => resetMode()}>
-                        System
-                    </DropdownMenu.Item>
-                </DropdownMenu.Content>
-            </DropdownMenu.Root>
+
+            <!-- Toggle Switch for Light/Dark Mode -->
+            <button on:click={toggleTheme} class="flex items-center justify-center h-[1.2rem] w-[1.2rem]">
+                {#if isDarkMode}
+                    <Moon class="h-full w-full text-header-foreground" />
+                {:else}
+                    <Sun class="h-full w-full text-header-foreground" />
+                {/if}
+                <span class="sr-only">Toggle theme</span>
+            </button>
         </div>
     </nav>
 
